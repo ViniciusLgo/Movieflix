@@ -1,77 +1,56 @@
-MovieFlix - API de Controle de Cadastro de Catálogo de Filmes
-Projeto Java com Spring Boot para desenvolvimento de uma API para controle de cadastro de catálogo de filmes.
+Claro! Segue o README completamente revisado, estilizado e formatado **em Markdown**, pronto para você copiar e colar no seu projeto.
 
-Link do Repositório
-Repositório no GitHub
+---
 
-Tecnologias, Ferramentas e Bibliotecas Utilizadas
-Java 17
+````markdown
+# 🎬 MovieFlix — API de Catálogo de Filmes
 
-Spring Boot 3
+Projeto em **Java** com **Spring Boot** para desenvolvimento de uma API robusta que gerencia o cadastro e controle de um catálogo de filmes, incluindo categorias, serviços de streaming e usuários.
 
-Spring Web
+---
 
-Spring Security
+## 🔗 Repositório
 
-JWT (JSON Web Token)
+[👉 Acesse o repositório no GitHub](#)
 
-xml
-Copiar
-<dependency>
-    <groupId>com.auth0</groupId>
-    <artifactId>java-jwt</artifactId>
-    <version>4.4.0</version>
-</dependency>
-Spring Data JPA
+---
 
-Validation (para validações de dados)
+## 🛠 Tecnologias & Ferramentas
 
-PostgreSQL (banco de dados)
+- **Java 17**
+- **Spring Boot 3**
+- **Spring Web** — Para construção da API RESTful.
+- **Spring Security** — Para autenticação e autorização.
+- **JWT** — Segurança dos endpoints.
+- **Spring Data JPA** — Persistência de dados.
+- **PostgreSQL** — Banco de dados relacional.
+- **Flyway** — Controle de migrações de banco.
+- **Lombok** — Redução de boilerplate.
+- **Validation** — Validação de dados de entrada.
+- **Swagger/OpenAPI** — Documentação automática da API.
+- **Custom Exceptions** — Tratamento centralizado de erros.
 
-Flyway (para controle de migrações do banco de dados)
+---
 
-Lombok (para redução de boilerplate code)
+## ⚙️ Configuração Inicial
 
-Exceptions (tratamento de exceções customizadas)
+### ✅ Criar projeto no Spring Initializr
 
-Documentação Open API Swagger
+**Dependências principais:**
+- Spring Web
+- Spring Security
+- Spring Data JPA
+- PostgreSQL Driver
+- Flyway Migration
+- Lombok
+- Validation
+- Springdoc OpenAPI
 
-xml
-Copiar
-<dependency>
-    <groupId>org.springdoc</groupId>
-    <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-    <version>2.2.0</version>
-</dependency>
-Configuração Inicial do Projeto
-Criar o projeto no Spring Initializr
+**Passos:**
+1. Importar no IntelliJ IDEA (ou IDE de sua preferência).
+2. Renomear `application.properties` para `application.yaml`.
 
-Acesse Spring Initializr e configure as dependências:
-
-Spring Web
-
-Spring Security
-
-Spring Data JPA
-
-PostgreSQL Driver
-
-Flyway Migration
-
-Lombok
-
-Validation
-
-Open API (Swagger)
-
-Importar no IntelliJ IDEA (ou outra IDE).
-
-Renomear o arquivo application.properties para application.yaml.
-
-Configurar application.yaml com as seguintes configurações:
-
-yaml
-Copiar
+```yaml
 spring:
   application:
     name: movieflix
@@ -85,75 +64,62 @@ spring:
     show-sql: true
   flyway:
     enabled: true
-Estrutura do Projeto
-Diagrama de Classe (se você deseja criar diagramas UML, esse seria o padrão):
+````
 
-Category
+---
 
-Streaming
+## 📂 Estrutura do Projeto
 
-Movie
+### 🗂️ Principais Entidades
 
-User
+* **Category**
+* **Streaming**
+* **Movie**
+* **User**
 
-Recursos Implementados
-1. Cadastro de Categorias (Category)
-Criar a entidade Category.
+---
 
-Criar arquivo de migração SQL:
+## 🚀 Recursos Implementados
 
-sql
-Copiar
+### 🎞️ Categoria (Category)
+
+```sql
 CREATE TABLE category (
     id serial PRIMARY KEY,
     name varchar(100) NOT NULL
 );
-Criar a interface CategoryRepository para operações CRUD.
+```
 
-Criar a classe CategoryService.
+**Endpoints:**
 
-Criar a classe CategoryController com os seguintes endpoints:
+* Listar todas as categorias
+* Salvar nova categoria
+* Buscar categoria por ID
+* Deletar categoria
 
-Listar todas as categorias.
+---
 
-Salvar nova categoria.
+### 📺 Streaming
 
-Buscar categoria por ID.
-
-Deletar categoria.
-
-2. Cadastro de Streaming
-Criar a entidade Streaming.
-
-Criar arquivo de migração SQL:
-
-sql
-Copiar
+```sql
 CREATE TABLE streaming (
     id serial PRIMARY KEY,
     name varchar(100) NOT NULL
 );
-Criar a interface StreamingRepository.
+```
 
-Criar a classe StreamingService.
+**Endpoints:**
 
-Criar a classe StreamingController com os seguintes endpoints:
+* Listar todos os serviços
+* Salvar novo serviço
+* Buscar por ID
+* Deletar serviço
 
-Listar todos os serviços de streaming.
+---
 
-Salvar novo serviço de streaming.
+### 🎥 Filme (Movie)
 
-Buscar serviço de streaming por ID.
-
-Deletar serviço de streaming.
-
-3. Cadastro de Filme (Movie)
-Criar a entidade Movie.
-
-Criar arquivo de migração SQL:
-
-sql
-Copiar
+```sql
 CREATE TABLE movie (
     id serial PRIMARY KEY,
     name varchar(255) NOT NULL,
@@ -167,140 +133,120 @@ CREATE TABLE movie (
 CREATE TABLE movie_category (
     movie_id INTEGER,
     category_id INTEGER,
-    CONSTRAINT fk_movie_category_movie FOREIGN KEY(movie_id) REFERENCES movie(id),
-    CONSTRAINT fk_movie_category_category FOREIGN KEY(category_id) REFERENCES category(id)
+    FOREIGN KEY(movie_id) REFERENCES movie(id),
+    FOREIGN KEY(category_id) REFERENCES category(id)
 );
 
 CREATE TABLE movie_streaming (
     movie_id INTEGER,
     streaming_id INTEGER,
-    CONSTRAINT fk_movie_streaming_movie FOREIGN KEY(movie_id) REFERENCES movie(id),
-    CONSTRAINT fk_movie_streaming_streaming FOREIGN KEY(service_id) REFERENCES streaming(id)
+    FOREIGN KEY(movie_id) REFERENCES movie(id),
+    FOREIGN KEY(streaming_id) REFERENCES streaming(id)
 );
-Criar a interface MovieRepository.
+```
 
-Criar a classe MovieService.
+**Endpoints:**
 
-Criar a classe MovieController com os seguintes endpoints:
+* Listar filmes
+* Salvar novo filme
+* Editar filme
+* Buscar por ID
+* Deletar filme
+* Buscar filmes por categoria
 
-Listar filmes.
+---
 
-Salvar filme.
+### 👤 Usuário (User)
 
-Alterar filme.
-
-Buscar filme por ID.
-
-Deletar filme.
-
-Retornar filmes por categoria.
-
-4. Cadastro de Usuários (User)
-Criar a entidade User.
-
-Criar arquivo de migração SQL:
-
-sql
-Copiar
+```sql
 CREATE TABLE users (
     id serial PRIMARY KEY,
     name varchar(255) NOT NULL,
     email varchar(255) NOT NULL,
     password varchar(255) NOT NULL
 );
-Criar a interface UserRepository.
+```
 
-Criar a classe UserService.
+**Endpoints:**
 
-Criar a classe UserController:
+* Registrar novo usuário
 
-Endpoint para registrar novo usuário.
+---
 
-Implementação de Segurança com Spring Security
-Criar a classe SecurityConfig:
+## 🔐 Segurança
 
-java
-Copiar
-public class SecurityConfig {
+* Configuração com **Spring Security**.
+* Autenticação via **JWT**.
+* Classes principais:
 
-    private final SecurityFilter securityFilter;
+  * `SecurityConfig`
+  * `TokenService`
+  * `AuthService`
+  * `SecurityFilter`
+  * `JWTUserData`
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        ...
-    }
-
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+```java
+@Bean
+public PasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder();
 }
-Criar a classe TokenService para criar e validar o token JWT.
+```
 
-Criar a classe JWTUserData para armazenar as informações do usuário.
+---
 
-Ajustar a entidade User para implementar UserDetails.
+## ⚠️ Tratamento de Erros & Validações
 
-Criar o AuthService que implementa UserDetailsService.
+* Validação das requisições com annotations (`@Valid`).
+* Exceções customizadas, como `UsernameOrPasswordInvalidException`.
+* Classe `ApplicationControllerAdvice` para centralizar tratamento global.
 
-Criar o SecurityFilter para interceptar as requisições e validar o token JWT.
+---
 
-Tratamento de Exceções e Validações
-Adicionar validação nas requisições.
+## 📑 Documentação com Swagger
 
-Criar o ApplicationControllerAdvice para tratar exceções globais.
+### Dependência
 
-Criar exceções customizadas, como UsernameOrPasswordInvalidException.
-
-Documentação OpenAPI Swagger
-Adicionar dependência do Springdoc OpenAPI:
-
-xml
-Copiar
+```xml
 <dependency>
     <groupId>org.springdoc</groupId>
     <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
     <version>2.2.0</version>
 </dependency>
-Configurar Swagger para expor os endpoints da API:
+```
 
-java
-Copiar
+### Configuração
+
+```java
 @Configuration
-@EnableOpenApi
 public class SwaggerConfig {
 
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
-            .info(new Info().title("MovieFlix API").version("1.0")
+            .info(new Info().title("MovieFlix API")
+            .version("1.0")
             .description("API para cadastro e controle de filmes, categorias e serviços de streaming."));
     }
 }
-Acessar a documentação via Swagger: http://localhost:8080/swagger-ui
+```
 
-Conclusão e Passos Finais
-Testar a API utilizando Swagger ou Postman.
+### Acessar
 
-Configuração do banco PostgreSQL e migrações com Flyway.
+[http://localhost:8080/swagger-ui](http://localhost:8080/swagger-ui)
 
-Proteger endpoints com Spring Security e JWT.
+---
 
-Verificar funcionamento de todos os endpoints com categorias, streaming, filmes e usuários.
+## ✅ Passos Finais
 
-Observação
-Esse projeto foi desenvolvido como parte de um curso de Java 10x e é um exemplo de como estruturar uma API robusta utilizando Spring Boot e integração com um banco de dados PostgreSQL.
+* Testar a API via Swagger ou Postman.
+* Validar migrações Flyway e estrutura do banco PostgreSQL.
+* Confirmar segurança dos endpoints com JWT.
+* Garantir que todos os fluxos (categorias, filmes, streaming, usuários) estejam funcionando corretamente.
 
-Para mais informações, acesse o repositório no GitHub ou entre em contato para dúvidas sobre a implementação! 🚀
+---
 
+## 💬 Observações
 
+Esse projeto foi desenvolvido como parte do **curso Java 10x**, servindo como exemplo completo de uma API robusta com Spring Boot, PostgreSQL e segurança JWT.
 
-
-
-
-Perguntar ao ChatGPT
+---
