@@ -8,3 +8,6 @@ class MovieflixApplicationTests {
 
     @Test
     void contextLoads() {
+    }
+
+}
