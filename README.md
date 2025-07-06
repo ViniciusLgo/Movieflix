@@ -1,276 +1,301 @@
-MovieFlix - API de Controle de Cadastro de Catálogo de Filmes 🎬
-Projeto Java com Spring Boot para desenvolvimento de uma API robusta que gerencia o cadastro e controle de um catálogo de filmes, incluindo categorias, serviços de streaming e usuários.
+# **MovieFlix - API de Controle de Cadastro de Catálogo de Filmes 🎬**
 
-🔗 Link do Repositório
-Repositório no GitHub
+**Projeto Java com Spring Boot para desenvolvimento de uma API robusta que gerencia o cadastro e controle de um catálogo de filmes, incluindo categorias, serviços de streaming e usuários.**
 
-🛠 Tecnologias, Ferramentas e Bibliotecas Utilizadas
-Java 17
+---
 
-Spring Boot 3
+### **🔗 Link do Repositório**
 
-Spring Web (para construção da API RESTful)
+[Repositório no GitHub](https://github.com/renanlessa/miniature-fortnight.git)
 
-Spring Security (para autenticação e autorização)
+---
 
-JWT (JSON Web Token para segurança de endpoints)
+## **🛠 Tecnologias, Ferramentas e Bibliotecas Utilizadas**
 
-xml
-Copiar
-<dependency>
-<groupId>com.auth0</groupId>
-<artifactId>java-jwt</artifactId>
-<version>4.4.0</version>
-</dependency>
-Spring Data JPA (para persistência de dados no banco)
+* **Java 17**
 
-Validation (para validação de dados de entrada)
+* **Spring Boot 3**
 
-PostgreSQL (banco de dados relacional)
+* **Spring Web** (para construção da API RESTful)
 
-Flyway (para controle de migrações do banco de dados)
+* **Spring Security** (para autenticação e autorização)
 
-Lombok (para reduzir código boilerplate)
+* **JWT** (JSON Web Token para segurança de endpoints)
 
-Exceptions (tratamento de exceções customizadas)
+  ```xml
+  <dependency>
+      <groupId>com.auth0</groupId>
+      <artifactId>java-jwt</artifactId>
+      <version>4.4.0</version>
+  </dependency>
+  ```
 
-Swagger/OpenAPI (para documentação automática da API)
+* **Spring Data JPA** (para persistência de dados no banco)
 
-xml
-Copiar
-<dependency>
-<groupId>org.springdoc</groupId>
-<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-<version>2.2.0</version>
-</dependency>
-⚙️ Configuração Inicial do Projeto
-Criar o projeto no Spring Initializr
-Acesse Spring Initializr e selecione as dependências:
+* **Validation** (para validação de dados de entrada)
 
-Spring Web
+* **PostgreSQL** (banco de dados relacional)
 
-Spring Security
+* **Flyway** (para controle de migrações do banco de dados)
 
-Spring Data JPA
+* **Lombok** (para reduzir código boilerplate)
 
-PostgreSQL Driver
+* **Exceptions** (tratamento de exceções customizadas)
 
-Flyway Migration
+* **Swagger/OpenAPI** (para documentação automática da API)
 
-Lombok
+  ```xml
+  <dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+      <version>2.2.0</version>
+  </dependency>
+  ```
 
-Validation
+---
 
-Open API (Swagger)
+## **⚙️ Configuração Inicial do Projeto**
 
-Importar o projeto no IntelliJ IDEA (ou outra IDE de sua preferência).
+1. **Criar o projeto no Spring Initializr**
+   Acesse [Spring Initializr](https://start.spring.io/) e selecione as dependências:
 
-Renomear o arquivo application.properties para application.yaml.
+    * **Spring Web**
+    * **Spring Security**
+    * **Spring Data JPA**
+    * **PostgreSQL Driver**
+    * **Flyway Migration**
+    * **Lombok**
+    * **Validation**
+    * **Open API (Swagger)**
 
-Configuração do application.yaml:
+2. **Importar o projeto no IntelliJ IDEA** (ou outra IDE de sua preferência).
 
-yaml
-Copiar
-spring:
-application:
-name: movieflix
-datasource:
-url: jdbc:postgresql://localhost:5432/movieflix
-username: postgres
-password: postgres
-driver-class-name: org.postgresql.Driver
-jpa:
-database-platform: org.hibernate.dialect.PostgreSQLDialect
-show-sql: true
-flyway:
-enabled: true
-📂 Estrutura do Projeto
-🔹 Diagrama de Classe (UML)
+3. **Renomear o arquivo `application.properties` para `application.yaml`**.
+
+4. **Configuração do `application.yaml`**:
+
+   ```yaml
+   spring:
+     application:
+       name: movieflix
+     datasource:
+       url: jdbc:postgresql://localhost:5432/movieflix
+       username: postgres
+       password: postgres
+       driver-class-name: org.postgresql.Driver
+     jpa:
+       database-platform: org.hibernate.dialect.PostgreSQLDialect
+       show-sql: true
+     flyway:
+       enabled: true
+   ```
+
+---
+
+## **📂 Estrutura do Projeto**
+
+### **🔹 Diagrama de Classe (UML)**
+
 O diagrama de classe define as entidades principais:
 
-Category
+* **Category**
+* **Streaming**
+* **Movie**
+* **User**
 
-Streaming
+---
 
-Movie
+## **🚀 Recursos Implementados**
 
-User
+### **1. Cadastro de Categorias (Category)**
 
-🚀 Recursos Implementados
-1. Cadastro de Categorias (Category)
-   Entidade Category criada com a estrutura:
+* **Entidade `Category`** criada com a estrutura:
 
-sql
-Copiar
-CREATE TABLE category (
-id serial PRIMARY KEY,
-name varchar(100) NOT NULL
-);
-Endpoints:
+  ```sql
+  CREATE TABLE category (
+      id serial PRIMARY KEY,
+      name varchar(100) NOT NULL
+  );
+  ```
 
-Listar todas as categorias.
+* **Endpoints:**
 
-Salvar nova categoria.
+    * Listar todas as categorias.
+    * Salvar nova categoria.
+    * Buscar categoria por ID.
+    * Deletar categoria.
 
-Buscar categoria por ID.
+---
 
-Deletar categoria.
+### **2. Cadastro de Streaming (Streaming)**
 
-2. Cadastro de Streaming (Streaming)
-   Entidade Streaming criada com a estrutura:
+* **Entidade `Streaming`** criada com a estrutura:
 
-sql
-Copiar
-CREATE TABLE streaming (
-id serial PRIMARY KEY,
-name varchar(100) NOT NULL
-);
-Endpoints:
+  ```sql
+  CREATE TABLE streaming (
+      id serial PRIMARY KEY,
+      name varchar(100) NOT NULL
+  );
+  ```
 
-Listar todos os serviços de streaming.
+* **Endpoints:**
 
-Salvar novo serviço de streaming.
+    * Listar todos os serviços de streaming.
+    * Salvar novo serviço de streaming.
+    * Buscar serviço de streaming por ID.
+    * Deletar serviço de streaming.
 
-Buscar serviço de streaming por ID.
+---
 
-Deletar serviço de streaming.
+### **3. Cadastro de Filmes (Movie)**
 
-3. Cadastro de Filmes (Movie)
-   Entidade Movie criada com a estrutura:
+* **Entidade `Movie`** criada com a estrutura:
 
-sql
-Copiar
-CREATE TABLE movie (
-id serial PRIMARY KEY,
-name varchar(255) NOT NULL,
-description text,
-release_date date,
-rating numeric,
-created_at timestamp,
-updated_at timestamp
-);
+  ```sql
+  CREATE TABLE movie (
+      id serial PRIMARY KEY,
+      name varchar(255) NOT NULL,
+      description text,
+      release_date date,
+      rating numeric,
+      created_at timestamp,
+      updated_at timestamp
+  );
 
-CREATE TABLE movie_category (
-movie_id INTEGER,
-category_id INTEGER,
-CONSTRAINT fk_movie_category_movie FOREIGN KEY(movie_id) REFERENCES movie(id),
-CONSTRAINT fk_movie_category_category FOREIGN KEY(category_id) REFERENCES category(id)
-);
+  CREATE TABLE movie_category (
+      movie_id INTEGER,
+      category_id INTEGER,
+      CONSTRAINT fk_movie_category_movie FOREIGN KEY(movie_id) REFERENCES movie(id),
+      CONSTRAINT fk_movie_category_category FOREIGN KEY(category_id) REFERENCES category(id)
+  );
 
-CREATE TABLE movie_streaming (
-movie_id INTEGER,
-streaming_id INTEGER,
-CONSTRAINT fk_movie_streaming_movie FOREIGN KEY(movie_id) REFERENCES movie(id),
-CONSTRAINT fk_movie_streaming_streaming FOREIGN KEY(service_id) REFERENCES streaming(id)
-);
-Endpoints:
+  CREATE TABLE movie_streaming (
+      movie_id INTEGER,
+      streaming_id INTEGER,
+      CONSTRAINT fk_movie_streaming_movie FOREIGN KEY(movie_id) REFERENCES movie(id),
+      CONSTRAINT fk_movie_streaming_streaming FOREIGN KEY(service_id) REFERENCES streaming(id)
+  );
+  ```
 
-Listar filmes.
+* **Endpoints:**
 
-Salvar filme.
+    * Listar filmes.
+    * Salvar filme.
+    * Alterar filme.
+    * Buscar filme por ID.
+    * Deletar filme.
+    * Retornar filmes por categoria.
 
-Alterar filme.
+---
 
-Buscar filme por ID.
+### **4. Cadastro de Usuários (User)**
 
-Deletar filme.
+* **Entidade `User`** criada com a estrutura:
 
-Retornar filmes por categoria.
+  ```sql
+  CREATE TABLE users (
+      id serial PRIMARY KEY,
+      name varchar(255) NOT NULL,
+      email varchar(255) NOT NULL,
+      password varchar(255) NOT NULL
+  );
+  ```
 
-4. Cadastro de Usuários (User)
-   Entidade User criada com a estrutura:
+* **Endpoints:**
 
-sql
-Copiar
-CREATE TABLE users (
-id serial PRIMARY KEY,
-name varchar(255) NOT NULL,
-email varchar(255) NOT NULL,
-password varchar(255) NOT NULL
-);
-Endpoints:
+    * Registrar novo usuário.
 
-Registrar novo usuário.
+---
 
-🔐 Implementação de Segurança com Spring Security
-Classe SecurityConfig para configuração de segurança.
+## **🔐 Implementação de Segurança com Spring Security**
 
-java
-Copiar
-public class SecurityConfig {
+1. **Classe `SecurityConfig`** para configuração de segurança.
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        ...
-    }
+   ```java
+   public class SecurityConfig {
 
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
-    }
+       @Bean
+       public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+           ...
+       }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-}
-Token JWT para autenticação:
+       @Bean
+       public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+           return authenticationConfiguration.getAuthenticationManager();
+       }
 
-Classe TokenService para criação e validação de tokens.
+       @Bean
+       public PasswordEncoder passwordEncoder() {
+           return new BCryptPasswordEncoder();
+       }
+   }
+   ```
 
-Classe JWTUserData para armazenar as informações do usuário.
+2. **Token JWT** para autenticação:
 
-Classe AuthService implementando UserDetailsService para o login.
+    * **Classe `TokenService`** para criação e validação de tokens.
+    * **Classe `JWTUserData`** para armazenar as informações do usuário.
+    * **Classe `AuthService`** implementando `UserDetailsService` para o login.
 
-Classe SecurityFilter para interceptação e validação do JWT.
+3. **Classe `SecurityFilter`** para interceptação e validação do JWT.
 
-⚠️ Tratamento de Exceções e Validações
-Validações nas requisições.
+---
 
-Exceções customizadas, como UsernameOrPasswordInvalidException.
+## **⚠️ Tratamento de Exceções e Validações**
 
-Classe ApplicationControllerAdvice para tratar exceções globais.
+* **Validações nas requisições**.
+* **Exceções customizadas**, como `UsernameOrPasswordInvalidException`.
+* **Classe `ApplicationControllerAdvice`** para tratar exceções globais.
 
-📑 Documentação OpenAPI Swagger
-Dependência do Springdoc OpenAPI:
+---
 
-xml
-Copiar
-<dependency>
-<groupId>org.springdoc</groupId>
-<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-<version>2.2.0</version>
-</dependency>
-Configuração do Swagger para exposição dos endpoints da API:
+## **📑 Documentação OpenAPI Swagger**
 
-java
-Copiar
-@Configuration
-@EnableOpenApi
-public class SwaggerConfig {
+1. **Dependência do Springdoc OpenAPI**:
 
-    @Bean
-    public OpenAPI customOpenAPI() {
-        return new OpenAPI()
-            .info(new Info().title("MovieFlix API")
-            .version("1.0")
-            .description("API para cadastro e controle de filmes, categorias e serviços de streaming."));
-    }
-}
-Acessar a documentação via Swagger:
+   ```xml
+   <dependency>
+       <groupId>org.springdoc</groupId>
+       <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+       <version>2.2.0</version>
+   </dependency>
+   ```
 
-Acesse http://localhost:8080/swagger-ui para visualizar e testar os endpoints da API.
+2. **Configuração do Swagger** para exposição dos endpoints da API:
 
-🔍 Conclusão e Passos Finais
-Testar a API utilizando o Swagger ou Postman.
+   ```java
+   @Configuration
+   @EnableOpenApi
+   public class SwaggerConfig {
 
-Configuração do banco PostgreSQL e migrações com Flyway.
+       @Bean
+       public OpenAPI customOpenAPI() {
+           return new OpenAPI()
+               .info(new Info().title("MovieFlix API")
+               .version("1.0")
+               .description("API para cadastro e controle de filmes, categorias e serviços de streaming."));
+       }
+   }
+   ```
 
-Proteger endpoints com Spring Security e JWT.
+3. **Acessar a documentação via Swagger**:
 
-Verificar o funcionamento de todos os endpoints, como categorias, streaming, filmes e usuários.
+    * Acesse [http://localhost:8080/swagger-ui](http://localhost:8080/swagger-ui) para visualizar e testar os endpoints da API.
 
-📌 Observações
-Esse projeto foi desenvolvido como parte de um curso de Java 10x e é um excelente exemplo de como estruturar uma API robusta utilizando Spring Boot, integração com PostgreSQL, e autenticação via JWT.
+---
+
+## **🔍 Conclusão e Passos Finais**
+
+* **Testar a API** utilizando o Swagger ou Postman.
+* **Configuração do banco PostgreSQL** e **migrações com Flyway**.
+* **Proteger endpoints com Spring Security e JWT**.
+* **Verificar o funcionamento de todos os endpoints**, como categorias, streaming, filmes e usuários.
+
+---
+
+## **📌 Observações**
+
+Esse projeto foi desenvolvido como parte de um curso de **Java 10x** e é um excelente exemplo de como estruturar uma API robusta utilizando **Spring Boot**, integração com **PostgreSQL**, e **autenticação via JWT**.
 
 Para mais informações e contribuições, acesse o repositório no GitHub ou entre em contato para dúvidas sobre a implementação!
+
