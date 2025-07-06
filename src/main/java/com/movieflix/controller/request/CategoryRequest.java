@@ -1,4 +1,4 @@
 package com.movieflix.controller.request;
 
-public record CategoryRequest() {
+public record CategoryRequest(String name) {
 }
