@@ -1,52 +1,51 @@
-MovieFlix - API de Controle de Cadastro de Catálogo de Filmes
-Projeto Java com Spring Boot para desenvolvimento de uma API para controle de cadastro de catálogo de filmes.
+MovieFlix - API de Controle de Cadastro de Catálogo de Filmes 🎬
+Projeto Java com Spring Boot para desenvolvimento de uma API robusta que gerencia o cadastro e controle de um catálogo de filmes, incluindo categorias, serviços de streaming e usuários.
 
-Link do Repositório
+🔗 Link do Repositório
 Repositório no GitHub
 
-Tecnologias, Ferramentas e Bibliotecas Utilizadas
+🛠 Tecnologias, Ferramentas e Bibliotecas Utilizadas
 Java 17
 
 Spring Boot 3
 
-Spring Web
+Spring Web (para construção da API RESTful)
 
-Spring Security
+Spring Security (para autenticação e autorização)
 
-JWT (JSON Web Token)
+JWT (JSON Web Token para segurança de endpoints)
 
 xml
 Copiar
 <dependency>
-    <groupId>com.auth0</groupId>
-    <artifactId>java-jwt</artifactId>
-    <version>4.4.0</version>
+<groupId>com.auth0</groupId>
+<artifactId>java-jwt</artifactId>
+<version>4.4.0</version>
 </dependency>
-Spring Data JPA
+Spring Data JPA (para persistência de dados no banco)
 
-Validation (para validações de dados)
+Validation (para validação de dados de entrada)
 
-PostgreSQL (banco de dados)
+PostgreSQL (banco de dados relacional)
 
 Flyway (para controle de migrações do banco de dados)
 
-Lombok (para redução de boilerplate code)
+Lombok (para reduzir código boilerplate)
 
 Exceptions (tratamento de exceções customizadas)
 
-Documentação Open API Swagger
+Swagger/OpenAPI (para documentação automática da API)
 
 xml
 Copiar
 <dependency>
-    <groupId>org.springdoc</groupId>
-    <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-    <version>2.2.0</version>
+<groupId>org.springdoc</groupId>
+<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+<version>2.2.0</version>
 </dependency>
-Configuração Inicial do Projeto
+⚙️ Configuração Inicial do Projeto
 Criar o projeto no Spring Initializr
-
-Acesse Spring Initializr e configure as dependências:
+Acesse Spring Initializr e selecione as dependências:
 
 Spring Web
 
@@ -64,29 +63,30 @@ Validation
 
 Open API (Swagger)
 
-Importar no IntelliJ IDEA (ou outra IDE).
+Importar o projeto no IntelliJ IDEA (ou outra IDE de sua preferência).
 
 Renomear o arquivo application.properties para application.yaml.
 
-Configurar application.yaml com as seguintes configurações:
+Configuração do application.yaml:
 
 yaml
 Copiar
 spring:
-  application:
-    name: movieflix
-  datasource:
-    url: jdbc:postgresql://localhost:5432/movieflix
-    username: postgres
-    password: postgres
-    driver-class-name: org.postgresql.Driver
-  jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-    show-sql: true
-  flyway:
-    enabled: true
-Estrutura do Projeto
-Diagrama de Classe (se você deseja criar diagramas UML, esse seria o padrão):
+application:
+name: movieflix
+datasource:
+url: jdbc:postgresql://localhost:5432/movieflix
+username: postgres
+password: postgres
+driver-class-name: org.postgresql.Driver
+jpa:
+database-platform: org.hibernate.dialect.PostgreSQLDialect
+show-sql: true
+flyway:
+enabled: true
+📂 Estrutura do Projeto
+🔹 Diagrama de Classe (UML)
+O diagrama de classe define as entidades principais:
 
 Category
 
@@ -96,23 +96,17 @@ Movie
 
 User
 
-Recursos Implementados
+🚀 Recursos Implementados
 1. Cadastro de Categorias (Category)
-Criar a entidade Category.
-
-Criar arquivo de migração SQL:
+   Entidade Category criada com a estrutura:
 
 sql
 Copiar
 CREATE TABLE category (
-    id serial PRIMARY KEY,
-    name varchar(100) NOT NULL
+id serial PRIMARY KEY,
+name varchar(100) NOT NULL
 );
-Criar a interface CategoryRepository para operações CRUD.
-
-Criar a classe CategoryService.
-
-Criar a classe CategoryController com os seguintes endpoints:
+Endpoints:
 
 Listar todas as categorias.
 
@@ -122,22 +116,16 @@ Buscar categoria por ID.
 
 Deletar categoria.
 
-2. Cadastro de Streaming
-Criar a entidade Streaming.
-
-Criar arquivo de migração SQL:
+2. Cadastro de Streaming (Streaming)
+   Entidade Streaming criada com a estrutura:
 
 sql
 Copiar
 CREATE TABLE streaming (
-    id serial PRIMARY KEY,
-    name varchar(100) NOT NULL
+id serial PRIMARY KEY,
+name varchar(100) NOT NULL
 );
-Criar a interface StreamingRepository.
-
-Criar a classe StreamingService.
-
-Criar a classe StreamingController com os seguintes endpoints:
+Endpoints:
 
 Listar todos os serviços de streaming.
 
@@ -147,41 +135,35 @@ Buscar serviço de streaming por ID.
 
 Deletar serviço de streaming.
 
-3. Cadastro de Filme (Movie)
-Criar a entidade Movie.
-
-Criar arquivo de migração SQL:
+3. Cadastro de Filmes (Movie)
+   Entidade Movie criada com a estrutura:
 
 sql
 Copiar
 CREATE TABLE movie (
-    id serial PRIMARY KEY,
-    name varchar(255) NOT NULL,
-    description text,
-    release_date date,
-    rating numeric,
-    created_at timestamp,
-    updated_at timestamp
+id serial PRIMARY KEY,
+name varchar(255) NOT NULL,
+description text,
+release_date date,
+rating numeric,
+created_at timestamp,
+updated_at timestamp
 );
 
 CREATE TABLE movie_category (
-    movie_id INTEGER,
-    category_id INTEGER,
-    CONSTRAINT fk_movie_category_movie FOREIGN KEY(movie_id) REFERENCES movie(id),
-    CONSTRAINT fk_movie_category_category FOREIGN KEY(category_id) REFERENCES category(id)
+movie_id INTEGER,
+category_id INTEGER,
+CONSTRAINT fk_movie_category_movie FOREIGN KEY(movie_id) REFERENCES movie(id),
+CONSTRAINT fk_movie_category_category FOREIGN KEY(category_id) REFERENCES category(id)
 );
 
 CREATE TABLE movie_streaming (
-    movie_id INTEGER,
-    streaming_id INTEGER,
-    CONSTRAINT fk_movie_streaming_movie FOREIGN KEY(movie_id) REFERENCES movie(id),
-    CONSTRAINT fk_movie_streaming_streaming FOREIGN KEY(service_id) REFERENCES streaming(id)
+movie_id INTEGER,
+streaming_id INTEGER,
+CONSTRAINT fk_movie_streaming_movie FOREIGN KEY(movie_id) REFERENCES movie(id),
+CONSTRAINT fk_movie_streaming_streaming FOREIGN KEY(service_id) REFERENCES streaming(id)
 );
-Criar a interface MovieRepository.
-
-Criar a classe MovieService.
-
-Criar a classe MovieController com os seguintes endpoints:
+Endpoints:
 
 Listar filmes.
 
@@ -196,34 +178,26 @@ Deletar filme.
 Retornar filmes por categoria.
 
 4. Cadastro de Usuários (User)
-Criar a entidade User.
-
-Criar arquivo de migração SQL:
+   Entidade User criada com a estrutura:
 
 sql
 Copiar
 CREATE TABLE users (
-    id serial PRIMARY KEY,
-    name varchar(255) NOT NULL,
-    email varchar(255) NOT NULL,
-    password varchar(255) NOT NULL
+id serial PRIMARY KEY,
+name varchar(255) NOT NULL,
+email varchar(255) NOT NULL,
+password varchar(255) NOT NULL
 );
-Criar a interface UserRepository.
+Endpoints:
 
-Criar a classe UserService.
+Registrar novo usuário.
 
-Criar a classe UserController:
-
-Endpoint para registrar novo usuário.
-
-Implementação de Segurança com Spring Security
-Criar a classe SecurityConfig:
+🔐 Implementação de Segurança com Spring Security
+Classe SecurityConfig para configuração de segurança.
 
 java
 Copiar
 public class SecurityConfig {
-
-    private final SecurityFilter securityFilter;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -240,34 +214,34 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 }
-Criar a classe TokenService para criar e validar o token JWT.
+Token JWT para autenticação:
 
-Criar a classe JWTUserData para armazenar as informações do usuário.
+Classe TokenService para criação e validação de tokens.
 
-Ajustar a entidade User para implementar UserDetails.
+Classe JWTUserData para armazenar as informações do usuário.
 
-Criar o AuthService que implementa UserDetailsService.
+Classe AuthService implementando UserDetailsService para o login.
 
-Criar o SecurityFilter para interceptar as requisições e validar o token JWT.
+Classe SecurityFilter para interceptação e validação do JWT.
 
-Tratamento de Exceções e Validações
-Adicionar validação nas requisições.
+⚠️ Tratamento de Exceções e Validações
+Validações nas requisições.
 
-Criar o ApplicationControllerAdvice para tratar exceções globais.
+Exceções customizadas, como UsernameOrPasswordInvalidException.
 
-Criar exceções customizadas, como UsernameOrPasswordInvalidException.
+Classe ApplicationControllerAdvice para tratar exceções globais.
 
-Documentação OpenAPI Swagger
-Adicionar dependência do Springdoc OpenAPI:
+📑 Documentação OpenAPI Swagger
+Dependência do Springdoc OpenAPI:
 
 xml
 Copiar
 <dependency>
-    <groupId>org.springdoc</groupId>
-    <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-    <version>2.2.0</version>
+<groupId>org.springdoc</groupId>
+<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+<version>2.2.0</version>
 </dependency>
-Configurar Swagger para expor os endpoints da API:
+Configuração do Swagger para exposição dos endpoints da API:
 
 java
 Copiar
@@ -278,29 +252,25 @@ public class SwaggerConfig {
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
-            .info(new Info().title("MovieFlix API").version("1.0")
+            .info(new Info().title("MovieFlix API")
+            .version("1.0")
             .description("API para cadastro e controle de filmes, categorias e serviços de streaming."));
     }
 }
-Acessar a documentação via Swagger: http://localhost:8080/swagger-ui
+Acessar a documentação via Swagger:
 
-Conclusão e Passos Finais
-Testar a API utilizando Swagger ou Postman.
+Acesse http://localhost:8080/swagger-ui para visualizar e testar os endpoints da API.
+
+🔍 Conclusão e Passos Finais
+Testar a API utilizando o Swagger ou Postman.
 
 Configuração do banco PostgreSQL e migrações com Flyway.
 
 Proteger endpoints com Spring Security e JWT.
 
-Verificar funcionamento de todos os endpoints com categorias, streaming, filmes e usuários.
+Verificar o funcionamento de todos os endpoints, como categorias, streaming, filmes e usuários.
 
-Observação
-Esse projeto foi desenvolvido como parte de um curso de Java 10x e é um exemplo de como estruturar uma API robusta utilizando Spring Boot e integração com um banco de dados PostgreSQL.
+📌 Observações
+Esse projeto foi desenvolvido como parte de um curso de Java 10x e é um excelente exemplo de como estruturar uma API robusta utilizando Spring Boot, integração com PostgreSQL, e autenticação via JWT.
 
-Para mais informações, acesse o repositório no GitHub ou entre em contato para dúvidas sobre a implementação! 🚀
-
-
-
-
-
-
-Perguntar ao ChatGPT
+Para mais informações e contribuições, acesse o repositório no GitHub ou entre em contato para dúvidas sobre a implementação!
