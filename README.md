@@ -1,4 +1,3 @@
-Claro! Segue o README completamente revisado, estilizado e formatado **em Markdown**, pronto para você copiar e colar no seu projeto.
 
 ---
 
