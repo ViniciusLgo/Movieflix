@@ -1,4 +1,4 @@
 package com.movieflix.controller.request;
 
-public record StreamingRequest() {
+public record StreamingRequest(String name) {
 }
